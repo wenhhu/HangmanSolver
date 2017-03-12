@@ -1,0 +1,3 @@
+# HangmanSolver
+
+## Usage
