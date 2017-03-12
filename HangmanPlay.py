@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+'''
+This file is part of HangmanSolver, https://github.com/wenhhu/HangmanSolver, and is
+Created on 03/12/2017
+Contact: wenhao.baruch@gmail.com
+'''
+
 import csv
 import time
 from utilities import *

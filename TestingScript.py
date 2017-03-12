@@ -1,4 +1,17 @@
 #!/usr/bin/env python
+# This file is part of HangmanSolver, https://github.com/wenhhu/HangmanSolver, and is
+# Created on 03/12/2017
+# Contact: wenhao.baruch@gmail.com
+
+'''
+This is the script for testing the efficiency and correct rate of our program on the whole dictionary. In the command
+line, the path of dictionary file need to be provided. An example of commands is:
+
+./TestingScript.py -i words_50000.txt
+
+The loading time is usually from 5 secs to 3 mins according to the size of dictionary. A dictionary with 500000 words
+takes up to several mins according to my estimation.
+'''
 
 import csv
 import time
@@ -10,6 +23,7 @@ if __name__ == "__main__":
     parser.add_argument('-i', type = str, help='path to dictionary file')
     args = parser.parse_args()
 
+    # Timer to record loading time
     start = time.time()
     data = []
     print "Loading dictionary, this process may take several minutes, please be patient... "
@@ -29,9 +43,12 @@ if __name__ == "__main__":
     data = data[eff]
     Len = np.array([len(i) for i in data])
     length = max(Len)
-    letters = [np.array([chr(i) in j for j in data]) for i in xrange(97, 123)]
-    patterns = [[{} for j in xrange(26)] for i in xrange(length)]
 
+    # Sort the dictionary according to whether they contain a certain letter
+    letters = [np.array([chr(i) in j for j in data]) for i in xrange(97, 123)]
+
+    # build the first filter to pick words with certain length, pattern and letters
+    patterns = [[{} for j in xrange(26)] for i in xrange(length)]
     for l in xrange(length):
         for ind1, i in enumerate(letters):
             temp = data[(Len == l+1) & i]
@@ -51,6 +68,7 @@ if __name__ == "__main__":
 
     print "Data loading is done, total time is %2f secs" % (time.time()-start)
 
+    # Timer to record calculation time
     start = time.time()
 
     res = []

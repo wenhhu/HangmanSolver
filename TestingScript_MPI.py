@@ -1,4 +1,16 @@
 #!/usr/bin/env python
+# This file is part of HangmanSolver, https://github.com/wenhhu/HangmanSolver, and is
+# Created on 03/12/2017
+# Contact: wenhao.baruch@gmail.com
+
+'''
+This is the MPI version of TestingScript.py. An example of commands is:
+
+mpirun -n 2 ./TestingScript.py -i words_50000.txt
+
+Here, you can choose the number of threading according to the number of "physical core" in you machine. According to my
+test, a dual-core CPU can half the calculation time. The hyper thread of intel won't apply in this case unfortunately.
+'''
 
 import csv
 import time
@@ -11,6 +23,7 @@ if __name__ == "__main__":
     parser.add_argument('-i', type = str, help='path to dictionary file')
     args = parser.parse_args()
 
+    # MPI setup
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     num_process = comm.Get_size()
@@ -35,8 +48,11 @@ if __name__ == "__main__":
     data = data[eff]
     Len = np.array([len(i) for i in data])
     length = max(Len)
+
+    # Sort the dictionary according to whether they contain a certain letter
     letters = [np.array([chr(i) in j for j in data]) for i in xrange(97, 123)]
 
+    # build the first filter to pick words with certain length, pattern and letters
     patterns = [[{} for j in xrange(26)] for i in xrange(length)]
     for l in xrange(length):
         for ind1, i in enumerate(letters):
@@ -60,6 +76,7 @@ if __name__ == "__main__":
         print "rank|count|accuracy|Tot. time|Ave. time"
         print "---------------------------------------"
 
+    # Timer to record calculation time
     start = time.time()
     res = []
     comm.Barrier()
