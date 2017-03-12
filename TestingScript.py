@@ -32,10 +32,9 @@ if __name__ == "__main__":
         for row in reader:
             data.append(row[0])
 
+    # Scrub the data by removing duplicates
     data = np.array(data)
-    comp = data[0]
-
-    ind, eff = 1, [0]
+    eff = [0]
     for i in xrange(1, len(data)):
         if data[i]!=data[i-1]:
             eff.append(i)
