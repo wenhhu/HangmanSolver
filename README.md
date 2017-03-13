@@ -27,9 +27,11 @@ In the `HangmanPlay.py` script, we will be required to provide the word you want
 
 ## How to install MPI and MPI4py?
 There are several popular MPI implementations currently. I strongly suggest you to install OpenMPI. You can get more information in their mainpages:
+
 `OpenMPI`: https://www.open-mpi.org
 
 Other MPI implementations can also be found in:
+
 `MPICH`: http://www.mpich.org
 `MVAPICH`: http://mvapich.cse.ohio-state.edu
 
@@ -38,10 +40,13 @@ Fortunately, you can skip this step if your os is ubuntu since openmpi is preins
 brew install open-mpi
 
 MPI4py can be install easily with `pip` or `anaconda`. The commands are:
+
 pip install mpi4py
+
 conda install -c mpi4py mpi4py=2.0.0
 
 For more information, please check:
+
 http://pythonhosted.org/mpi4py/mpi4py.pdf
 
 ## Benchmark
