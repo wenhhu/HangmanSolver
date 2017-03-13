@@ -42,7 +42,9 @@ Fortunately, you can skip this step if your os is ubuntu since openmpi is preins
 brew install open-mpi
 
 MPI4py can be install easily with `pip` or `anaconda`. The commands are:
+
 `pip install mpi4py`
+
 `conda install -c mpi4py mpi4py=2.0.0`
 
 For more information, please check:
