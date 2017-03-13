@@ -46,7 +46,7 @@ if __name__ == "__main__":
     # Sort the dictionary according to whether they contain a certain letter
     letters = [np.array([chr(i) in j for j in data]) for i in xrange(97, 123)]
 
-    # build the first filter to pick words with certain length, pattern and letters
+    # Build the first filter to pick words with certain length, pattern and letters
     patterns = [[{} for j in xrange(26)] for i in xrange(length)]
     for l in xrange(length):
         for ind1, i in enumerate(letters):
@@ -76,6 +76,7 @@ if __name__ == "__main__":
 
     for ind, i in enumerate(data):
         verify = Verifier(i, verbose = False)
+        # Input parameters of Guess constructor
         params = {'verify' : verify,
               'patterns' : patterns,
               'filter' : filter,

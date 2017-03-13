@@ -4,6 +4,8 @@
 This file is part of HangmanSolver, https://github.com/wenhhu/HangmanSolver, and is
 Created on 03/12/2017
 Contact: wenhao.baruch@gmail.com
+Playable hangman script. Command:
+./HangmanPlay.py -i "path to dictionary"
 '''
 
 import csv
@@ -16,6 +18,7 @@ if __name__ == "__main__":
     parser.add_argument('-i', type = str, help='path to dictionary file')
     args = parser.parse_args()
 
+    # Timer to record loading time
     start = time.time()
     data = []
     print "Loading dictionary, this process may take several minutes, please be patient... "
@@ -24,10 +27,9 @@ if __name__ == "__main__":
         for row in reader:
             data.append(row[0])
 
+    # Scrub the data by removing duplicates
     data = np.array(data)
-    comp = data[0]
-
-    ind, eff = 1, [0]
+    eff = [0]
     for i in xrange(1, len(data)):
         if data[i]!=data[i-1]:
             eff.append(i)
@@ -35,7 +37,10 @@ if __name__ == "__main__":
     data = data[eff]
     Len = np.array([len(i) for i in data])
     length = max(Len)
+    # Sort the dictionary according to whether they contain a certain letter
     letters = [np.array([chr(i) in j for j in data]) for i in xrange(97, 123)]
+
+    # Build the first filter to pick words with certain length, pattern and letters
     patterns = [[{} for j in xrange(26)] for i in xrange(length)]
 
     for l in xrange(length):
@@ -73,6 +78,7 @@ if __name__ == "__main__":
                     break
 
         verify = Verifier(words, verbose=False)
+        # Input parameters of Guess constructor
         params = {'verify' : verify,
                  'patterns' : patterns,
                  'filter' : filter,
@@ -93,4 +99,4 @@ if __name__ == "__main__":
         else:
             print "Bingo"
 
-        raw_input("Press Enter to continue...")
+        pick = raw_input("Press Enter to continue...")

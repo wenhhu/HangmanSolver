@@ -5,18 +5,18 @@ This file is part of HangmanSolver, https://github.com/wenhhu/HangmanSolver
 Created on 03/12/2017
 Contact: wenhao.baruch@gmail.com
 
-In this module, we implemented all the tool functions needed for the handman solver, including data loading module,
-blind guessing module, regular guessing module and verifier module.
+In this module, we implemented all the tool functions needed for the handman solver, including data loading module, blind guessing module, regular guessing module and verifier module.
 '''
 
 import numpy as np
 import random
 
 def firstShot(d):
-    ''' Build the blind guessing strategy
-    d : array of scrubbed word with certain length in dictionary
+    ''' Build the blind guessing strategy.
+    Args:
+        d : array of scrubbed word with certain length in dictionary
     Return:
-        best strategy of initial blind guessing
+        best strategy of blind guessing
     '''
     chain = []
     if len(d)==0:
@@ -32,14 +32,14 @@ def firstShot(d):
                 l = chr(i)
         chain.append(l)
         # Use mask to pick the words which don't contain current letter, and in the loop, we will find the most frequent
-        # letter in the new d
+        # letter in the new d.
         d = d[~mask]
         if len(d) == 0:
             break
     return chain
 
 def buildDataBase(data, Len, patterns, length, letters):
-    ''' Build the data base which is used in our strategy
+    ''' Build the data base which is used in our strategy.
     Args:
         data: array of scrubbed word data
         Len: array storing the length of each word in data
@@ -48,7 +48,7 @@ def buildDataBase(data, Len, patterns, length, letters):
         letters: array storing the boolean index of word containing each letters
 
     Returns:
-        a data structure to store the filtration logic in our strategy
+        a data structure to store the filtration logic in our strategy.
     '''
     filter = [[{} for j in xrange(26)] for i in xrange(length)]
 
@@ -59,7 +59,7 @@ def buildDataBase(data, Len, patterns, length, letters):
     # take bit as 1 if current letter is on this bit. For instance, the 'a' pattern number of 'aaas' is 0111 which is
     # 7. In this way, we can narrow the candidates to a very large extent. After getting the words with above pattern,
     # we will sort them again according to the letter in them and associated pattern number which will end up with a list
-    # of dictionary with length 26
+    # of dictionary with length 26.
 
     for l in xrange(length):
         for i in xrange(26):
@@ -92,7 +92,7 @@ def buildDataBase(data, Len, patterns, length, letters):
     return filter
 
 class Verifier():
-    '''class to encapsulate the unknown word, and provide utility to verify guesses
+    '''class to encapsulate the unknown word, and provide utility to verify guesses.
     Attribute:
         _word (str): word to be guessed
         ans (str): current correct guesses
@@ -104,11 +104,11 @@ class Verifier():
         self.verbose = verbose
 
     def check(self, l):
-        ''' check whether input is in the word
+        ''' Check whether input is in the word.
         Args:
             l: letter to be verified
         Return:
-            return true if l is in the word
+            return true if l is in the word.
         '''
         if l in self._word and l not in self.ans:
             if self.verbose:
@@ -125,22 +125,22 @@ class Verifier():
             return False
 
     def done(self):
-        ''' check whether all the letters in the word is guessed
+        ''' Check whether all the letters in the word is guessed.
         Return:
             return true if word is correctly guessed
         '''
         return '_' in self.ans
 
     def reset(self):
-        ''' reset the guessed answer '''
+        ''' Reset the guessed answer. '''
         self.ans = np.array(["_"]*len(self._word))
 
     def show(self):
-        ''' show the guessed answer so far '''
+        ''' Show the guessed answer so far. '''
         print("".join(self.ans))
 
 class Guess():
-    '''class to conduct the guessing based on a degigned strategy
+    '''Class to conduct the guessing based on a degigned strategy
     Attribute:
         verify (verifier): "verifier" object which handles the verification of our guessing
         length (int): length of the word
@@ -151,7 +151,7 @@ class Guess():
         patterns: a data structure to store the indices of word with certain pattern numbers
         indict (boolean): a boolean variable to determine whether this word is in our dictionary
         filter: a data structure to store the filtration logic in our strategy
-        firstshot: best strategy of initial blind guessing
+        firstshot: best strategy of blind guessing
         playmode (boolean): switch controling whether interative mode of silent mode is used
         miss (list of index): list to store the missed guessing
     '''
@@ -263,7 +263,7 @@ class Guess():
             return True
 
     def tGuess(self):
-        ''' A function to combine the blind initial guess and regular guess
+        ''' A function to combine the blind guess and regular guess
         Return:
             Return if word is fully guessed.
         '''
@@ -280,7 +280,7 @@ class Guess():
             return False
 
     def display(self):
-        ''' display utility to be used in interactive mode'''
+        ''' Display utility to be used in interactive mode'''
         print "guess :{}".format(self.last)
         print "{} missed: {}".format(' '.join(self.verify.ans), ','.join(self.miss))
         raw_input("Press Enter to continue...")

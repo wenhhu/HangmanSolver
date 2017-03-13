@@ -62,7 +62,7 @@ Sequential:
 
 MPI:
 
-|Number of Words| Correct Words | Accuracy | Loadin Time| Calc. Time|Total Time|
+|Number of Words| Correct Words | Accuracy | Loading Time| Calc. Time|Total Time|
 |---------------|-----------|----------|-----|----|----|
 |10000|9910|99.1%|6.5 s|9.8 s|16.3 s|
 |50000|48300|96.6%|32.1 s|120 s| 152.1 s|
