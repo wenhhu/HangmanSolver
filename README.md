@@ -9,13 +9,7 @@ You can find three source files in this package, `utilities.py`, `TestingScript.
 ## What is the strategy in this solver?
 In general, there are three parts in our solver which handles different situations.
 
-The first part is the "blind guessing" module. This module is used when we don't have any information about this word except for the length. As a result, we will select all the words with this length and take the most frequent letter in these words as our first guess. If it failed, we will narrow the candidates to those words which doesn't contain this letter and vice versa. If this letter is in the word, we will calculate the pattern number of this word corresponding to this letter. For instance, the pattern number of 'aaas' for 'a' is:
-
-\begin{equation}
-1+2+4=7
-\end{equation}
-
-By matching the pattern number of this word, we can narrow our candidates again. Note that, it's totally possible that the given word is not in our dictionary. Therefore, we will use a random module to handle this situation which we will talk about later. Otherwise, a regular guessing module will be used in the second stage.
+The first part is the "blind guessing" module. This module is used when we don't have any information about this word except for the length. As a result, we will select all the words with this length and take the most frequent letter in these words as our first guess. If it failed, we will narrow the candidates to those words which doesn't contain this letter and vice versa. If this letter is in the word, we will calculate the pattern number of this word corresponding to this letter. For instance, the pattern number of 'aaas' for 'a' is 1+2+4=7. By matching the pattern number of this word, we can narrow our candidates again. Note that, it's totally possible that the given word is not in our dictionary. Therefore, we will use a random module to handle this situation which we will talk about later. Otherwise, a regular guessing module will be used in the second stage.
 
 
 
