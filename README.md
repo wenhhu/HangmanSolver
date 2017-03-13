@@ -19,14 +19,11 @@ In the random guessing module, no information from the dictionary can be relied 
 Python 2.7
 
 ## How to use this solver?
-`HangmanPlay.py`:
-<tt> ./HangmanPlay.py -i "path to dictionary" <tt>
+`HangmanPlay.py`: ./HangmanPlay.py -i "path to dictionary"
 
-`TestingScript.py`:
-<tt> ./TestingScript.py -i "path to dictionary" <tt>
+`TestingScript.py`: ./TestingScript.py -i "path to dictionary"
 
-`TestingScript_MPI.py`:
-<tt> ./TestingScript_MPI.py -i "path to dictionary" <tt>
+`TestingScript_MPI.py`: ./TestingScript_MPI.py -i "path to dictionary"
 
 In the `HangmanPlay.py` script, we will be required to provide the word you want our program to guess. By hitting enter, you can see the guess one by one.
 
