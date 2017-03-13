@@ -68,7 +68,7 @@ MPI:
 |50000|48300|96.6%|32.1 s|120 s| 152.1 s|
 |250000|N/A|N/A|150 s|N/A| N/A|
 
-Specification of testing machine:
+Specifications of testing machine:
 
 Processor: 2.7 GHz Intel Core i5
 
