@@ -39,11 +39,11 @@ Other MPI implementations can also be found in:
 
 Fortunately, you can skip this step if your os is ubuntu since openmpi is preinstalled in most distributions of ubuntu. If your os is OSX, you can install it on homebrew. On my machine, the command to install it is:
 
-<tt> brew install open-mpi <tt>
+brew install open-mpi
 
 MPI4py can be install easily with `pip` or `anaconda`. The commands are:
-<tt> pip install mpi4py <tt>
-<tt> conda install -c mpi4py mpi4py=2.0.0 <tt>
+pip install mpi4py
+conda install -c mpi4py mpi4py=2.0.0
 
 For more information, please check:
 
