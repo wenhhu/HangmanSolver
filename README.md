@@ -52,7 +52,7 @@ For more information, please check:
 http://pythonhosted.org/mpi4py/mpi4py.pdf
 
 ## Benchmark
-Sequential:
+Serial:
 
 |Number of Words| Correct Words | Accuracy | Loading Time| Calc. Time|Total Time|
 |---------------|-----------|----------|-----|----|----|
